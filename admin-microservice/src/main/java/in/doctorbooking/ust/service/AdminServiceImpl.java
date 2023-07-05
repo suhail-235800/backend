@@ -51,6 +51,14 @@ public class AdminServiceImpl implements AdminService{
         return doctorRepository.save(test);
 
     }
+    @Override
+    public List<Doctor> getDoctorByKeyword(String searchkeyword) {
+        final var test = doctorRepository.findBydoctorNamecontaining(searchkeyword);
+        if(test.isEmpty()){
+            throw new DoctorNotFoundException("doctor not found with the keyword");
+        }
+        return test;
+    }
 
     @Override
     public List<Doctor> getDoctorByNameAndSpec(String doctorName, String doctorSpecialization) {

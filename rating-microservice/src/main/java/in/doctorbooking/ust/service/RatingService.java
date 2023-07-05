@@ -10,4 +10,5 @@ public interface RatingService {
     Double getReviewByDoctor(Integer doctorId);
 
     List<Rating> getRatingById(int id);
+    Rating getReviewByAppointmentIdandUserId(int i, int i1);
 }

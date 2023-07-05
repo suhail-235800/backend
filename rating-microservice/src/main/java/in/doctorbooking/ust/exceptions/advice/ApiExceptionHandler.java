@@ -1,6 +1,7 @@
 package in.doctorbooking.ust.exceptions.advice;
 
 
+import in.doctorbooking.ust.exceptions.RatingAlreadyExistsException;
 import in.doctorbooking.ust.exceptions.RatingNotFoundException;
 import in.doctorbooking.ust.exceptions.dto.ApiError;
 import in.doctorbooking.ust.exceptions.dto.ApiValidationError;
@@ -72,6 +73,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(RatingNotFoundException.class)
     protected ResponseEntity<Object> handleDcotorNotFoundException(RatingNotFoundException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.NOT_FOUND, ex));
+    }
+
+    @ExceptionHandler(RatingAlreadyExistsException.class)
+    protected ResponseEntity<Object> handleRatingexistsException(RatingAlreadyExistsException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.NOT_FOUND, ex));
     }
 

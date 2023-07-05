@@ -33,11 +33,12 @@ spring:
           predicates:
             - Path=/doctorapp/api/v1/appointments
             - Method=GET,POST,OPTIONS
+
           filters:
             - RewritePath=/doctorapp/api/v1/appointments, /api/v1/appointments
-            - name: UserTokenFilter
-              args:
-                tokenHeaderName: X-User-Token
+            - name: AuthenticationFilter
+#              args:
+#                tokenHeaderName: X-User-Token
         - id: rating-service
           uri: lb://RATING-SERVICE
           predicates:
@@ -45,18 +46,17 @@ spring:
             - Method=GET,POST,OPTIONS
           filters:
             - RewritePath=/doctorapp/api/v1/ratings, /api/v1/ratings
-            - name: UserTokenFilter
-              args:
-                tokenHeaderName: X-User-Token
+            - name: AuthenticationFilter
+#              args:
+#                tokenHeaderName: X-User-Token
         - id: admin-service
           uri: lb://ADMIN-SERVICE
           predicates:
             - Path=/doctorapp/api/v1/admin
             - Method=GET,POST,PUT,DELETE,OPTIONS
-#            - Header=Authorization, Bearer (.*)
           filters:
             - RewritePath=/doctorapp/api/v1/admin, /api/v1/admin
-            - name: UserTokenFilter
+            - name: AuthenticationFilter
               args:
                 tokenHeaderName: X-User-Token
         - id: security-service

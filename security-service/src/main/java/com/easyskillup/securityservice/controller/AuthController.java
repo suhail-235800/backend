@@ -26,14 +26,11 @@ public class AuthController {
     private final JWTService jwtService;
 
     private final Logger logger = LoggerFactory.getLogger(AuthController.class);
-
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
         authenticationService.register(request);
         return ResponseEntity.ok().build();
     }
-
-
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
 

@@ -31,8 +31,6 @@ public class AutheticationServiceImpl implements AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
         log.warn("register");
         var user = User.builder()
-                .firstName(request.firstName())
-                .lastName(request.lastName())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
                 .role(request.role().equalsIgnoreCase("user") ? Role.USER : Role.ADMIN)

@@ -1,6 +1,7 @@
 package in.doctorbooking.ust.service;
 
 import in.doctorbooking.ust.domain.Rating;
+import in.doctorbooking.ust.exceptions.RatingAlreadyExistsException;
 import in.doctorbooking.ust.exceptions.RatingNotFoundException;
 import in.doctorbooking.ust.repository.RatingRepository;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,12 @@ public class RatingServiceImpl implements RatingService{
         }
         return list;
     }
-
+    @Override
+    public Rating getReviewByAppointmentIdandUserId(int i, int i1) {
+        Rating rating = ratingRepository.findByAppointmentIdAndUserId(i,i1);
+        if(rating!=null){
+            throw new RatingAlreadyExistsException("rating already exists");
+        }
+        return rating;
+    }
 }

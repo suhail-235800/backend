@@ -29,4 +29,6 @@ public interface AdminService {
     List<Doctor> getDoctorByNameAndLocAndSpec(String doctorName, String doctorLocation, String doctorSpecialization);
 
     List<Doctor> getDoctorByLocAndSpec(String doctorLocation, String doctorSpecialization);
+
+    List<Doctor> getDoctorByKeyword(String searchkeyword);
 }
